@@ -1,10 +1,5 @@
 #!/bin/bash -l
 
-host_full=ocp-all-in-one01.example.com
-host=ocp-all-in-one01
-vm_path="OCP"
-
-
 cat /root/.bashrc|egrep -v "GOVC" > /tmp/.bashrc
 echo "export GOVC_URL='192.168.100.102'"                  >> /tmp/.bashrc
 echo "export GOVC_USERNAME='administrator@vsphere.local'" >> /tmp/.bashrc
@@ -26,9 +21,9 @@ conf_sshkey()
 	rm -rf /root/.ssh/*
 	cat /dev/zero | ssh-keygen -q -N ""
 
-  echo "StrictHostKeyChecking no"       >> /etc/ssh/ssh_config
-  echo "UserKnownHostsFile /dev/null"   >> /etc/ssh/ssh_config
-  echo "LogLevel QUIET"                 >> /etc/ssh/ssh_config  
+         echo "StrictHostKeyChecking no"       >> /etc/ssh/ssh_config
+         echo "UserKnownHostsFile /dev/null"   >> /etc/ssh/ssh_config
+         echo "LogLevel QUIET"                 >> /etc/ssh/ssh_config  
   
 	sshpass -p "jakarosa" ssh-copy-id -o StrictHostKeyChecking=no root@$host_full
 }
@@ -66,10 +61,10 @@ conf_govc()
 	##
 	# $govc vm.change -e="disk.enableUUID=1" -vm='VM Path'
 	
-	vm_path_full=$(govc ls -L|grep vm)/$vm_path/$host_full
-	echo $vm_path_full
-	echo "govc vm.change -e=\"disk.enableUUID=1\" -vm='$vm_path_full'"|sh
-	govc ls -L
+	#vm_path_full=$(govc ls -L|grep vm)/$vm_path/$host_full
+	#echo $vm_path_full
+	#echo "govc vm.change -e=\"disk.enableUUID=1\" -vm='$vm_path_full'"|sh
+	#govc ls -L
 }
 
 conf_timezone
