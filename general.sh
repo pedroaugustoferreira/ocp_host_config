@@ -68,7 +68,6 @@ conf_govc()
 }
 
 conf_timezone
-conf_network
 conf_hosts
 conf_sshkey
 conf_yum
